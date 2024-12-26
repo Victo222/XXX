@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informativo Intarrivo S.A.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #f59e0b;
+            --text-color: #ffffff;
+            --bg-color: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .fullscreen-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            padding: 2rem;
+        }
+
+        .logo-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-section {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 2rem;
+        }
+
+        .company-name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .congratulations {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .date-info {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .reminder-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .reminder-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .reminder-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .reminder-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .motivation-message {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .signature {
+            font-style: italic;
+            text-align: right;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .fullscreen-container {
+                flex-direction: column;
+            }
+
+            .logo-section, .content-section {
+                flex: none;
+            }
+
+            .logo {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1rem;
+            }
+
+            .company-name {
+                font-size: 2rem;
+            }
+
+            .congratulations {
+                font-size: 1.5rem;
+            }
+
+            .date-info, .reminder-title, .motivation-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-container">
+        <div class="logo-section">
+            <div class="logo">
+                <img src="/img/IMG-20240202-WA0005.jpg" alt="Logo Intarrivo S.A.">
+            </div>
+        </div>
+        <div class="content-section">
+            <h1 class="company-name">INTARRIVO S.A.</h1>
+            <div class="congratulations">FELICITACIONES SRES. CONDUCTORES</div>
+            <div class="date-info">
+                AL DÍA DE HOY, <span class="highlight">28.10.2024</span> LLEVAN <span class="highlight">164 DÍAS</span> SIN ACCIDENTES AL INTERIOR DEL TERMINAL.
+            </div>
+            <div class="reminder-title">RECORDAR:</div>
+            <ul class="reminder-list">
+                <li>SIEMPRE ESTACIONAR LOS BUSES EN POSICIÓN DE SALIDA.</li>
+                <li>SUS AUTOS PARTICULARES donde puedan, mientras se habilita el lugar definitivo para éste efecto, pero, en lo posible, en posición de salida.</li>
+                <li>No fume en ruta.</li>
+                <li>No use el teléfono mientras conduce, por favor.</li>
+            </ul>
+            <div class="motivation-message">
+                SON MUY BUENOS CONDUCTORES, NO CAMBIEN A NO SER QUE SEA PARA MEJORAR.
+            </div>
+            <div class="signature">
+                Atentamente,<br>
+                INTARRIVO S.A
+            </div>
+        </div>
+    </div>
+
+    <script>
+          // Function to redirect 
+          function redirectToHola() {
+            window.location.href = '/informeinterno.html';
+        }
+
+        // Set a timeout to call the redirect function after 2 minutes (120000 milliseconds)
+        setTimeout(redirectToHola, 60000);
+
+        // Entry animations
+        gsap.from(".logo", {
+            duration: 1.5,
+            scale: 0,
+            rotation: 360,
+            ease: "elastic.out(1, 0.5)"
+        });
+
+        gsap.from(".content-section > *", {
+            duration: 1,
+            x: 100,
+            opacity: 0,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Continuous animations
+        gsap.to(".logo", {
+            rotation: 360,
+            duration: 20,
+            repeat: -1,
+            ease: "none"
+        });
+
+        gsap.to(".company-name", {
+            textShadow: "0 0 10px #f59e0b, 0 0 20px #f59e0b, 0 0 30px #f59e0b",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        gsap.to(".highlight", {
+            color: "#4ade80",
+            textShadow: "0 0 5px #4ade80",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        gsap.to(".content-section", {
+            y: 10,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        // Background animation
+        gsap.to("body", {
+            background: "linear-gradient(45deg, #1e293b, #0f172a)",
+            duration: 10,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html>
+

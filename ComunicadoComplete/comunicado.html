@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicado Interno - Intarrivo S.A.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f39c12;
+            --text-color: #ffffff;
+            --bg-color: #2c3e50;
+            --highlight-color: #ffff00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            height: 100vh;
+            position: relative;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 80%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .content {
+            flex: 2;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            text-shadow: 0 0 5px var(--text-color);
+        }
+
+        .highlighted {
+            background-color: var(--secondary-color);
+            color: var(--bg-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .signature {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            color: var(--highlight-color);
+            text-shadow: 0 0 10px var(--highlight-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .image-container, .content {
+                flex: none;
+            }
+
+            .image-container {
+                height: 40vh;
+            }
+
+            .content {
+                height: 60vh;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+
+            .signature {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="/img/IMG-20240202-WA0005.jpg" alt="Logo Intarrivo S.A." class="logo" id="logo">
+        </div>
+        <div class="content">
+            <h1>Comunicado Interno</h1>
+            <p id="salutation">Estimados colaboradores de Intarrivo S.A.</p>
+            <p id="info">A partir del <span class="highlighted">lunes 14 de octubre de 2024</span>, el Seremitt iniciará una <span class="highlighted">exhaustiva fiscalización</span> a nuestros buses.</p>
+            <p id="recommendation">Se recomienda encarecidamente poner atención especial en el uniforme y credencial.</p>
+            <p class="signature" id="signature">INTARRIVO S.A</p>
+        </div>
+    </div>
+
+    <script>
+
+      
+          function redirectToHola() {
+            window.location.href = '/EstimadosComplete/estimados2.html';
+        }
+
+      
+        setTimeout(redirectToHola, 60000);
+
+      
+        const tl = gsap.timeline({repeat: -1, repeatDelay: 2});
+
+    
+        tl.from("#logo", {duration: 2, rotation: 360, scale: 1.5, ease: "power2.out"})
+          .to("#logo", {duration: 1, scale: 0.8, x: "-25%", ease: "power2.inOut"})
+          
+          
+          .to(".content", {duration: 1, opacity: 1, x: "10%", ease: "power2.out"})
+          
+        
+          .from("h1", {duration: 0.7, y: -50, opacity: 0, ease: "back.out(1.7)"})
+          .from("#salutation", {duration: 0.7, y: 30, opacity: 0, ease: "power2.out"}, "-=0.5")
+          .from("#info", {duration: 0.7, y: 30, opacity: 0, ease: "power2.out"}, "-=0.5")
+          .from("#recommendation", {duration: 0.7, y: 30, opacity: 0, ease: "power2.out"}, "-=0.5")
+          .from("#signature", {duration: 0.7, y: 30, opacity: 0, ease: "power2.out"}, "-=0.5")
+          
+        
+          .to({}, {duration: 5})
+          
+          
+          .to(".content", {duration: 1, opacity: 0, x: "25%", ease: "power2.in"})
+          
+     
+          .to("#logo", {duration: 1, scale: 1.5, x: "0%", ease: "power2.inOut"})
+          .to("#logo", {duration: 2, rotation: -360, scale: 1, ease: "power2.inOut"});
+
+        
+        gsap.to(".highlighted", {
+            duration: 0.5,
+            backgroundColor: "var(--primary-color)",
+            color: "var(--text-color)",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+       
+        gsap.to("p", {
+            duration: 1.5,
+            textShadow: "0 0 10px var(--text-color)",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+     
+        gsap.to(".signature", {
+            duration: 1.5,
+            textShadow: "0 0 15px var(--highlight-color)",
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicado Interno - Intarrivo S.A.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff0000;
+            --secondary-color: #ff9999;
+            --background-color: #000033;
+            --highlight-color: #ffff00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            overflow: hidden;
+        }
+
+        .fullscreen-container {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .logo-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .content-section {
+            flex: 2;
+            padding: 5vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .date {
+            text-align: right;
+            margin-bottom: 2vh;
+            font-size: 1.2em;
+        }
+
+        .content {
+            font-size: 1.3em;
+            margin-bottom: 4vh;
+        }
+
+        .emphasized {
+            color: var(--secondary-color);
+            font-style: italic;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 4vh;
+        }
+
+        .signature p {
+            margin: 5px 0;
+            font-size: 1.2em;
+        }
+
+        .company-name {
+            color: var(--highlight-color);
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .salutation {
+            font-weight: bold;
+            margin-bottom: 2vh;
+            font-size: 1.4em;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .fullscreen-container {
+                flex-direction: column;
+            }
+
+            .logo-section {
+                height: 30vh;
+            }
+
+            .content-section {
+                padding: 5vw;
+            }
+            
+            .content {
+                font-size: 1.1em;
+            }
+
+            .date, .signature p {
+                font-size: 1em;
+            }
+
+            .salutation, .company-name {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fullscreen-container" id="container">
+        <div class="logo-section">
+            <img src="/img/IMG-20240202-WA0005.jpg" alt="Logo Intarrivo S.A." class="logo">
+        </div>
+        <div class="content-section">
+            <div class="date">
+                Chillán, 11.10.2024.
+            </div>
+
+            <div class="content">
+                <div class="salutation">
+                    Estimados colaboradores,
+                </div>
+                <p>
+                    téngase presente que <span class="emphasized">el baño del norte fue dispuesto sólo para orinar</span>, salvo emergencias, recordar también que en las dependencias de Intarrivo S.A. <span class="emphasized">existen las instalaciones sanitarias correspondientes para su uso</span>, por lo tanto, solicito, encarecidamente, <span class="emphasized">haga lo necesario donde corresponde</span>.
+                </p>
+            </div>
+
+            <div class="signature">
+                <p>Atentamente,</p>
+                <p class="company-name">INTARRIVO S.A.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+          
+
+     
+        gsap.to(".logo", {
+            rotation: 360,
+            duration: 20,
+            repeat: -1,
+            ease: "none"
+        });
+
+        gsap.to(".content-section", {
+            y: 10,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+       
+        gsap.to(".logo", {
+            boxShadow: "0 0 50px rgba(255, 255, 255, 0.8)",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+       
+        gsap.to(".content p, .salutation, .date, .signature p", {
+            color: "#ff3333",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        
+        gsap.to(".company-name", {
+            textShadow: "0 0 10px rgba(255,255,0,0.7)",
+            duration: 1.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+     
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            document.getElementById('container').appendChild(particle);
+
+            gsap.to(particle, {
+                y: '100vh',
+                duration: Math.random() * 10 + 5,
+                ease: "none",
+                onComplete: () => {
+                    particle.remove();
+                    createParticle();
+                }
+            });
+        }
+
+        
+        for (let i = 0; i < 20; i++) {
+            createParticle();
+        }
+
+    
+        gsap.to('body', {
+            backgroundColor: '#000066',
+            duration: 10,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+    </script>
+</body>
+</html>
+
